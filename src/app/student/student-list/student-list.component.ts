@@ -2,7 +2,8 @@ import { StudentService } from './../student.service';
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { Student } from '../student';
 
-import {MatTableDataSource, MatSort, MatSortHeaderIntl, MatPaginator, MatDialog} from '@angular/material';
+import {MatTableDataSource, MatSort, MatSortHeaderIntl, MatPaginator, MatDialog, ErrorStateMatcher} from '@angular/material';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 
 
 @Component({
@@ -72,6 +73,19 @@ export class StudentListComponent implements OnInit, AfterViewInit {
   selector: 'app-student-list-dialog',
   templateUrl: 'student-list-dialog.html',
 })
-export class StudentListDialogComponent {}
+export class StudentListDialogComponent {
+  emailFormControl: FormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
 
+  matcher = new MyErrorStateMatcher();
+}
 
+/** Error when invalid control is dirty, touched, or submitted. */
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}

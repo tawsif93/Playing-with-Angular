@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 
 import { StudentModule } from './student/student.module';
 import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './shared/shared.module';
 
 const materials = [ ];
 
@@ -25,6 +26,7 @@ const materials = [ ];
     materials,
     StudentModule,
     AppRoutingModule,
+    SharedModule.forRoot()
   ],
   exports: [],
   providers: [],

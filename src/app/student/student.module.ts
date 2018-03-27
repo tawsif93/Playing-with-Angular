@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StudentListComponent, StudentListDialogComponent } from './student-list/student-list.component';
@@ -18,10 +19,12 @@ const materials = [MatCardModule, MatTableModule , MatToolbarModule, MatIconModu
 @NgModule({
   imports: [
     CommonModule,
-    materials
+    materials,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  entryComponents: [StudentListDialogComponent],
   declarations: [StudentListComponent, StudentDetailComponent, StudentListDialogComponent],
+  entryComponents: [StudentListDialogComponent],
   exports : [],
   providers: [StudentService, MatSortHeaderIntl]
 })
