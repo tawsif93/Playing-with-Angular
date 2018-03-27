@@ -1,1 +1,8 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.mat-form-field {
+  /* font-size: 14px; */
+  width: 99%;
+}
+
+.mat-icon-button {
+  outline: 0px;
+}

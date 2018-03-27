@@ -1,0 +1,88 @@
+  <form name="userForm" ng-cloak ng-submit="answer(dialog.student)">
+
+
+    <mat-toolbar color="">
+      <mat-toolbar-row *ngIf="!option.search">
+          <h2 mat-dialog-title>Add Student</h2>
+      </mat-toolbar-row>
+    </mat-toolbar>
+      <md-toolbar>
+          <div class="md-toolbar-tools">
+              <h2>Student</h2>
+              <span flex></span>
+              <md-button class="md-icon-button" ng-click="cancel()">
+                  <md-icon aria-label="Close dialog">close</md-icon>
+              </md-button>
+          </div>
+      </md-toolbar>
+
+      <mat-dialog-contentt>
+          <div class="md-dialog-content">
+              <div layout-gt-sm="row">
+
+                  <md-input-container class="md-block" flex-gt-sm="">
+                      <label>Name</label>
+                      <input md-maxlength="30" required ng-disabled="dialog.option" name="name" ng-model="dialog.student.name">
+
+                      <div class="hint" ng-if="dialog.showHints">Tell us what we should call you!</div>
+
+                      <div ng-messages="userForm.name.$error" ng-if="!dialog.showHints">
+                          <div ng-message="required">Name is required.</div>
+                          <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                      </div>
+                  </md-input-container>
+
+                  <div flex="5" hide-xs="" hide-sm="">
+                      <!-- Spacer //-->
+                  </div>
+
+                  <md-input-container class="md-block" flex-gt-sm="">
+                      <label>Age</label>
+                      <input name="age" ng-disabled="dialog.option" ng-model="dialog.student.age">
+
+                      <div class="hint" ng-if="dialog.showHints">###-##-####</div>
+
+                      <div ng-messages="userForm.age.$error" ng-if="!dialog.showHints">
+                          <div ng-message="pattern">## - Please enter a valid Age.</div>
+                      </div>
+                  </md-input-container>
+
+              </div>
+
+              <div layout-gt-sm="row">
+
+                  <md-input-container class="md-block" flex-gt-sm="">
+                      <label>Email</label>
+                      <input name="email" ng-disabled="dialog.option" ng-model="dialog.student.email" required="" minlength="5" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+
+                      <div class="hint" ng-show="dialog.showHints">How can we reach you?</div>
+
+                      <div ng-messages="userForm.email.$error" ng-hide="dialog.showHints">
+                          <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                              Your email must be between 5 and 100 characters long and look like an e-mail address.
+                          </div>
+                      </div>
+                  </md-input-container>
+
+                  <div flex="5" hide-xs="" hide-sm="">
+                      <!-- Spacer //-->
+                  </div>
+
+                  <md-input-container class="md-block" flex-gt-sm="">
+                      <label>CGPA</label>
+                      <input name="cgpa" ng-disabled="dialog.option" ng-model="dialog.student.cgpa">
+
+                      <div class="hint" ng-show="dialog.showHints">(###) ###-####</div>
+
+                      <div ng-messages="userForm.cgpa.$error" ng-hide="dialog.showHints">
+                          <div ng-message="pattern">##.##</div>
+                      </div>
+                  </md-input-container>
+              </div>
+          </div>
+      </mat-dialog-content>
+      <mat-dialog-actions layout="row">
+          <md-button ng-if="!dialog.option" class="md-raised md-accent" type="submit">Submit</md-button>
+      </mat-dialog-actions>
+
+  </form>
