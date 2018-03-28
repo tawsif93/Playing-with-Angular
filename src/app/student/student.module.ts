@@ -12,6 +12,7 @@ import {MatButtonModule} from '@angular/material/button';
 
 import {  MatSortModule, MatSortHeaderIntl, MatPaginatorModule, MatInputModule, MatDialogModule } from '@angular/material';
 import { StudentService } from './student.service';
+import { SharedModule } from '../shared/shared.module';
 
 const materials = [MatCardModule, MatTableModule , MatToolbarModule, MatIconModule, MatSortModule, MatPaginatorModule , MatInputModule,
                    MatButtonModule, MatDialogModule];
@@ -21,7 +22,8 @@ const materials = [MatCardModule, MatTableModule , MatToolbarModule, MatIconModu
     CommonModule,
     materials,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   declarations: [StudentListComponent, StudentDetailComponent, StudentListDialogComponent],
   entryComponents: [StudentListDialogComponent],

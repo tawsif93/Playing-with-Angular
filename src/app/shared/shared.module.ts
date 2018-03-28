@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { AuthGuard } from './guards/auth-guard.service';
@@ -13,12 +13,11 @@ const SHARED_COMPONENTS = [
 ];
 
 @NgModule({
-    imports: [CommonModule, RouterModule, FormsModule, SHARED_COMPONENTS],
-    declarations: SHARED_COMPONENTS,
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, SHARED_COMPONENTS],
+    declarations: [],
     exports: [
         SHARED_COMPONENTS,
         CommonModule,
-        FormsModule,
     ],
 
     providers: []
