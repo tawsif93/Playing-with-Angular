@@ -2,7 +2,7 @@ import { StudentService } from './../student.service';
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { Student } from '../student';
 
-import {MatTableDataSource, MatSort, MatSortHeaderIntl, MatPaginator, MatDialog, ErrorStateMatcher} from '@angular/material';
+import {MatTableDataSource, MatSort, MatSortHeaderIntl, MatPaginator, MatDialog, ErrorStateMatcher, MatButton} from '@angular/material';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 
 
@@ -16,6 +16,7 @@ export class StudentListComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('openButton') openDialogButton: MatButton;
 
   public displayedColumns: any = ['position', 'name', 'weight', 'symbol'];
   public dataSource;
@@ -58,6 +59,8 @@ export class StudentListComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      this.openDialogButton._elementRef.nativeElement.classList.remove('cdk-program-focused');
+      this.openDialogButton._elementRef.nativeElement.classList.add('cdk-mouse-focused');
     });
 
   }

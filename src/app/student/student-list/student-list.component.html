@@ -1,61 +1,56 @@
-
 <mat-card>
-  <mat-toolbar color="">
-    <mat-toolbar-row *ngIf="!option.search">
-      <span>Custom Toolbar</span>
-      <!-- <mat-icon >search</mat-icon> -->
-      <button mat-icon-button (click)="option.search = !option.search" class="ml-auto" color="">
+    <mat-toolbar color="">
+        <mat-toolbar-row *ngIf="!option.search">
+            <span>Custom Toolbar</span>
+            <!-- <mat-icon >search</mat-icon> -->
+            <button mat-icon-button (click)="option.search = !option.search" class="ml-auto" color="">
         <mat-icon >search</mat-icon>
       </button>
-      <button mat-icon-button (click)="addStudent()">
+            <button #openButton mat-icon-button (click)="addStudent()">
         <mat-icon  class="">add</mat-icon>
       </button>
-    </mat-toolbar-row>
-    <mat-toolbar-row *ngIf="option.search">
-      <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" >
-        <mat-icon (click)="option.search = !option.search; dataSource.filter=''" class="ml-auto">cancel</mat-icon>
-      </mat-form-field>
-    </mat-toolbar-row>
-  </mat-toolbar>
+        </mat-toolbar-row>
+        <mat-toolbar-row *ngIf="option.search">
+            <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                <mat-icon (click)="option.search = !option.search; dataSource.filter=''" class="ml-auto">cancel</mat-icon>
+            </mat-form-field>
+        </mat-toolbar-row>
+    </mat-toolbar>
 
 
-  <mat-table #table [dataSource]="dataSource" matSort >
+    <mat-table #table [dataSource]="dataSource" matSort>
 
-    <!--- Note that these columns can be defined in any order.
+        <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-    </ng-container>
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+        </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef  mat-sort-header> Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-    </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        </ng-container>
 
-    <!-- Weight Column -->
-    <ng-container matColumnDef="weight">
-      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
-    </ng-container>
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weight">
+            <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+        </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
-      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-    </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="symbol">
+            <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+        </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-  <mat-paginator #paginator
-                 [pageSize]="10"
-                 [pageSizeOptions]="getPaginatorPageSize()"
-                 [showFirstLastButtons]="true"
-                 (page)="pageChange($event)">
-  </mat-paginator>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="getPaginatorPageSize()" [showFirstLastButtons]="true" (page)="pageChange($event)">
+    </mat-paginator>
 </mat-card>
