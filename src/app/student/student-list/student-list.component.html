@@ -54,3 +54,5 @@
     <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="getPaginatorPageSize()" [showFirstLastButtons]="true" (page)="pageChange($event)">
     </mat-paginator>
 </mat-card>
+
+<app-dynamic-form [fields]="questions"></app-dynamic-form>

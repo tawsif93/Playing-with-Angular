@@ -1,3 +1,5 @@
+import { FormTextbox } from './../../shared/tuForms/dynamic-form/form-textbox';
+import { FormBase } from './../../shared/tuForms/dynamic-form/form-base';
 import { StudentService } from './../student.service';
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { Student } from '../student';
@@ -20,6 +22,35 @@ export class StudentListComponent implements OnInit, AfterViewInit {
 
   public displayedColumns: any = ['position', 'name', 'weight', 'symbol'];
   public dataSource;
+  questions: FormBase<any>[] = [
+
+    // new DropdownQuestion({
+    //   key: 'brave',
+    //   label: 'Bravery Rating',
+    //   options: [
+    //     {key: 'solid',  value: 'Solid'},
+    //     {key: 'great',  value: 'Great'},
+    //     {key: 'good',   value: 'Good'},
+    //     {key: 'unproven', value: 'Unproven'}
+    //   ],
+    //   order: 3
+    // }),
+
+    new FormTextbox({
+      key: 'firstName',
+      label: 'First name',
+      value: 'Bombasto',
+      required: true,
+      order: 1
+    }),
+
+    new FormTextbox({
+      key: 'emailAddress',
+      label: 'Email',
+      type: 'email',
+      order: 2
+    })
+  ];
 
   option: any = {
     search: false
