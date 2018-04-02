@@ -1,0 +1,16 @@
+<div [formGroup]="form">
+    <label [attr.for]="formField.key">{{formField.label}}</label>
+
+    <div [ngSwitch]="formField.controlType">
+
+        <input *ngSwitchCase="'textbox'" [formControlName]="formField.key" [id]="formField.key">
+
+        <select *ngSwitchCase="'dropdown'" [formControlName]="formField.key" [id]="formField.key">
+          <option *ngFor="let option of formField.options" [value]="option.key">{{option.value}}</option>
+        </select>
+
+    </div>
+
+    <div class="errorMessage" *ngIf="!isValid">{{formField.label}} is required</div>
+
+</div>
