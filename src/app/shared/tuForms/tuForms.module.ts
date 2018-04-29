@@ -1,3 +1,4 @@
+import { MaterialModule } from './../material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormService } from './dynamic-form/dynamic-form.service';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
@@ -11,7 +12,7 @@ const modules: any[] = [ DynamicFormComponent];
 
 @NgModule({
   imports: [
-    CommonModule,  BrowserModule, ReactiveFormsModule
+    CommonModule,  BrowserModule, ReactiveFormsModule , MaterialModule
   ],
   declarations: [modules, DynamicFormBuilderComponent],
   exports: [modules],
