@@ -1,11 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppBoostrapModule } from './app-bootstrap/app-bootstrap.module';
 
-
 import { NgModule } from '@angular/core';
-
 
 import { AppComponent } from './app.component';
 
@@ -13,12 +11,10 @@ import { StudentModule } from './student/student.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 
-const materials = [ ];
+const materials = [];
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -32,6 +28,4 @@ const materials = [ ];
   providers: [],
   bootstrap: [AppComponent]
 })
-
-
-export class AppModule { }
+export class AppModule {}
