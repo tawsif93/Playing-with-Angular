@@ -7,6 +7,27 @@ import { Student } from '../student';
 import {MatTableDataSource, MatSort, MatSortHeaderIntl, MatPaginator, MatDialog, ErrorStateMatcher, MatButton} from '@angular/material';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 
+/** Error when invalid control is dirty, touched, or submitted. */
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
+
+@Component({
+  selector: 'app-student-list-dialog',
+  templateUrl: 'student-list-dialog.html',
+})
+export class StudentListDialogComponent {
+  emailFormControl: FormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+
+  matcher = new MyErrorStateMatcher();
+}
+
 
 @Component({
   selector: 'app-student-list',
@@ -100,26 +121,5 @@ export class StudentListComponent implements OnInit, AfterViewInit {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
-  }
-}
-
-@Component({
-  selector: 'app-student-list-dialog',
-  templateUrl: 'student-list-dialog.html',
-})
-export class StudentListDialogComponent {
-  emailFormControl: FormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-
-  matcher = new MyErrorStateMatcher();
-}
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }

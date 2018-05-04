@@ -5,7 +5,7 @@ import { Student } from './student';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
-
+const storageKey = 'students';
 @Injectable()
 export class StudentService {
 
@@ -45,6 +45,6 @@ export class StudentService {
   }
 }
 
-const storageKey = 'students';
+
 
 
