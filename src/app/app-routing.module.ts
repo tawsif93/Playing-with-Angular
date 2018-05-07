@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { StudentListComponent } from './student/student-list/student-list.component';
 import { StudentDetailComponent } from './student/student-detail/student-detail.component';
 import { AuthGuard } from './shared/guards/auth-guard.service';
+import { Location, LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 const routes: Routes = [
   { path: '', redirectTo: '/student-list', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }]
 })
 export class AppRoutingModule {}
