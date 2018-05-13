@@ -1,3 +1,5 @@
+import { CalendarModule } from 'angular-calendar';
+import { CalenderComponent } from './../shared/calender/calender.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,6 +15,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {  MatSortModule, MatSortHeaderIntl, MatPaginatorModule, MatInputModule, MatDialogModule } from '@angular/material';
 import { StudentService } from './student.service';
 import { SharedModule } from '../shared/shared.module';
+import { CalenderModule } from '../shared/calender/calender.module';
 
 const materials = [MatCardModule, MatTableModule , MatToolbarModule, MatIconModule, MatSortModule, MatPaginatorModule , MatInputModule,
                    MatButtonModule, MatDialogModule];
@@ -23,7 +26,8 @@ const materials = [MatCardModule, MatTableModule , MatToolbarModule, MatIconModu
     materials,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    CalenderModule
   ],
   declarations: [StudentListComponent, StudentDetailComponent, StudentListDialogComponent],
   entryComponents: [StudentListDialogComponent],
