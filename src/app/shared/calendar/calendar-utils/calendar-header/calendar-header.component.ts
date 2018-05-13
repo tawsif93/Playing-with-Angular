@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-calender-header',
-  templateUrl: './calender-header.component.html',
-  styleUrls: ['./calender-header.component.css']
+  selector: 'app-calendar-header',
+  templateUrl: './calendar-header.component.html',
+  styleUrls: ['./calendar-header.component.css']
 })
-export class CalenderHeaderComponent implements OnInit {
+export class CalendarHeaderComponent implements OnInit {
 
   @Input() view: string;
 
