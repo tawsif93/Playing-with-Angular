@@ -10,9 +10,9 @@ import { CalendarModule, } from 'angular-calendar';
 	  CommonModule,
   	CalendarModule.forRoot(),
   	CalendarUtilsModule,
-  	FlexLayoutModule,
+    FlexLayoutModule,
   ],
   declarations: [CalendarComponent, ],
-  exports: [CalendarComponent, ],
+  exports: [CalendarComponent ],
 })
 export class HRMCalendarModule { }
