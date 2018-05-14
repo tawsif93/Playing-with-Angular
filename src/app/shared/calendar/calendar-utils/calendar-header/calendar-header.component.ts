@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ViewEncapsulation, } from '@angular/core';
 
 @Component({
   selector: 'app-calendar-header',
   templateUrl: './calendar-header.component.html',
-  styleUrls: ['./calendar-header.component.css']
+  styleUrls: ['./calendar-header.component.scss', ],
+  encapsulation: ViewEncapsulation.None,
 })
 export class CalendarHeaderComponent implements OnInit {
 
@@ -11,8 +12,7 @@ export class CalendarHeaderComponent implements OnInit {
 
   @Input() viewDate: Date;
 
-  // tslint:disable-next-line:no-inferrable-types
-  @Input() locale: string = 'en';
+  @Input() locale = 'en';
 
   @Output() viewChange: EventEmitter<string> = new EventEmitter();
 

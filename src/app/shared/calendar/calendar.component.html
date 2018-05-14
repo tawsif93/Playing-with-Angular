@@ -6,10 +6,14 @@
         <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
         <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
     </div>
+    <div>HOLIDAY</div>
+    <div>HOLIDAY</div>
+    <div>HOLIDAY</div>
+    <div>HOLIDAY</div>
     <small style="margin: 5px">There are {{ day.events.length }} events on this day</small>
 </ng-template>
 
-<div [ngSwitch]="view">
+<div class="calendar content" [ngSwitch]="view">
     <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [cellTemplate]="customCellTemplate">
     </mwl-calendar-month-view>
     <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events">

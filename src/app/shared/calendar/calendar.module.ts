@@ -1,16 +1,18 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CalendarUtilsModule } from './calendar-utils/calendar-utils.module';
-import { CalendarComponent } from './calendar.component';
-import { CalendarModule } from 'angular-calendar';
+import { FlexLayoutModule, } from '@angular/flex-layout';
+import { NgModule, } from '@angular/core';
+import { CommonModule, } from '@angular/common';
+import { CalendarUtilsModule, } from './calendar-utils/calendar-utils.module';
+import { CalendarComponent, } from './calendar.component';
+import { CalendarModule, } from 'angular-calendar';
 
 @NgModule({
   imports: [
-    CommonModule,
-    CalendarModule.forRoot(),
-    CalendarUtilsModule
+	  CommonModule,
+  	CalendarModule.forRoot(),
+  	CalendarUtilsModule,
+  	FlexLayoutModule,
   ],
-  declarations: [CalendarComponent],
-  exports: [CalendarComponent]
+  declarations: [CalendarComponent, ],
+  exports: [CalendarComponent, ],
 })
 export class HRMCalendarModule { }

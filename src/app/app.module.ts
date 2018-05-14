@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule, } from '@angular/flex-layout';
 
 import { AppBoostrapModule } from './app-bootstrap/app-bootstrap.module';
 
@@ -18,6 +19,7 @@ const materials = [];
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     // AppBoostrapModule,
     materials,
     StudentModule,
