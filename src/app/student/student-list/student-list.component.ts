@@ -128,9 +128,9 @@ export class StudentListComponent implements OnInit, AfterViewInit {
     } as CalendarEventModel
     ] as [CalendarEventModel],
     Title: 'Student Calendar',
-    DefaultEventBackgroundColor: '#d82fbc',
+    // DefaultEventBackgroundColor: '#d82fbc',
     View: CalendarViews.Month,
-    ActiveWeekViewButton: true
+    // ActiveWeekViewButton: true
   };
 
   constructor(private studentService: StudentService, private sortHeaderService: MatSortHeaderIntl, public dialog: MatDialog,

@@ -49,7 +49,6 @@ export class CalendarComponent implements OnInit, OnDestroy, AfterViewInit {
     this.viewDate = new Date();
     this.activeDayIsOpen = true;
     this.selectedDay = {date: startOfDay(new Date())};
-
   }
 
 
@@ -159,7 +158,9 @@ export class CalendarComponent implements OnInit, OnDestroy, AfterViewInit {
       });
     }
 
-    this.setEvents();
+    if (this.calendarConfiguration && this.calendarConfiguration.Events) {
+      this.setEvents();
+    }
   }
 
   ngAfterViewInit() {
