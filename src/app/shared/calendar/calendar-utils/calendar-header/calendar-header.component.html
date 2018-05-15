@@ -1,4 +1,4 @@
-<div class="row text-center">
+<!-- <div class="row text-center">
   <div class="col-md-4">
       <div class="btn-group">
           <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="viewDateChange.next(viewDate)">
@@ -29,7 +29,7 @@
       </div>
   </div>
 </div>
-<br>
+<br> -->
 <div id="calendar" class="page-layout simple fullwidth" fusePerfectScrollbar>
     <!-- HEADER -->
     <div class="header p-16 p-sm-24" [ngClass]="viewDate | date:'MMM'">
@@ -40,39 +40,39 @@
 
                 <div class="logo mb-16 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
 
-                    <mat-icon class="logo-icon" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">today</mat-icon>
+                    <mat-icon class="logo-icon" >today</mat-icon>
 
-                    <span class="logo-text" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Calendar</span>
+                    <span class="logo-text">{{(configuration.Title) || 'Calendar'}}</span>
 
                 </div>
 
                 <!-- TOOLBAR -->
                 <div class="toolbar" fxLayout="row" fxLayoutAlign="start center">
 
-                    <button mat-button class="mat-icon-button" aria-label="Search" matTooltip="Search">
+                    <!-- <button mat-button class="mat-icon-button" aria-label="Search" matTooltip="Search">
                         <mat-icon>search</mat-icon>
-                    </button>
+                    </button> -->
 
                     <button mat-button class="mat-icon-button"
                             mwlCalendarToday
                             [(viewDate)]="viewDate"
-                            (viewDateChange)="selectedDay = {date:$event}"
+                            (viewDateChange)="viewDateChange.next(viewDate); headerService.calendarToday.next()"
                             aria-label="Today" matTooltip="Today">
                         <!--(click)="selectedDay = viewDate"-->
                         <mat-icon>today</mat-icon>
                     </button>
 
-                    <button mat-button class="mat-icon-button" (click)="view='day'"
+                    <button *ngIf="configuration.ActiveDayViewButton" mat-button class="mat-icon-button" (click)="viewChange.emit('day')" 
                             aria-label="Day" matTooltip="Day">
                         <mat-icon>view_day</mat-icon>
                     </button>
 
-                    <button mat-button class="mat-icon-button" (click)="view='week'"
+                    <button *ngIf="configuration.ActiveWeekViewButton" mat-button class="mat-icon-button" (click)="viewChange.emit('week')" 
                             aria-label="Week" matTooltip="Week">
                         <mat-icon>view_week</mat-icon>
                     </button>
 
-                    <button mat-button class="mat-icon-button" (click)="view='month'"
+                    <button *ngIf="configuration.ActiveMonthViewButton" mat-button class="mat-icon-button" (click)="viewChange.emit('month')" 
                             aria-label="Month" matTooltip="Month">
                         <mat-icon>view_module</mat-icon>
                     </button>
@@ -81,14 +81,13 @@
             <!-- / TOOLBAR -->
 
             <!-- HEADER BOTTOM -->
-            <div class="header-bottom" fxLayout="row" fxLayoutAlign="center center"
-                 [@animate]="{value:'*',params:{delay:'150ms'}}">
+            <div class="header-bottom" fxLayout="row" fxLayoutAlign="center center">
 
                 <button mat-button class="mat-icon-button arrow"
                         mwlCalendarPreviousView
                         [view]="view"
                         [(viewDate)]="viewDate"
-                        (viewDateChange)="selectedDay = {date:$event}"
+                        (viewDateChange)="viewDateChange.next(viewDate); headerService.calendarPrevious.next()"
                         aria-label="Previous">
                     <mat-icon>chevron_left</mat-icon>
                 </button>
@@ -101,7 +100,7 @@
                         mwlCalendarNextView
                         [view]="view"
                         [(viewDate)]="viewDate"
-                        (viewDateChange)="selectedDay = {date:$event}"
+                        (viewDateChange)="viewDateChange.next(viewDate); headerService.calendarNext.next()"
                         aria-label="Next">
                     <mat-icon>chevron_right</mat-icon>
                 </button>

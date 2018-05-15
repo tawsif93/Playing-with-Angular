@@ -19,4 +19,7 @@ export class CalendarService {
     this.refreshEvent.next(event);
   }
 
+  public refresh(): void {
+    this.refreshEvent.next();
+  }
 }

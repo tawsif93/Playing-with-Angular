@@ -1,3 +1,4 @@
+import { ICalendarConfiguration, CalendarViews } from './../../shared/calendar/models/calendar.model';
 import { CalendarService } from './../../shared/calendar/calendar.service';
 import { FormTextbox } from './../../shared/tuForms/dynamic-form/form-textbox';
 import { FormBase } from './../../shared/tuForms/dynamic-form/form-base';
@@ -8,6 +9,7 @@ import { Student } from '../student';
 import {MatTableDataSource, MatSort, MatSortHeaderIntl, MatPaginator, MatDialog, ErrorStateMatcher, MatButton} from '@angular/material';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { CalendarEventModel } from '../../shared/calendar/models/event.model';
+import { subDays, addDays, startOfDay, addHours, endOfMonth } from 'date-fns';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -77,6 +79,58 @@ export class StudentListComponent implements OnInit, AfterViewInit {
 
   option: any = {
     search: false
+  };
+
+  configuration: ICalendarConfiguration = {
+    Events: [
+        {
+      start: subDays(startOfDay(new Date()), 1),
+      end: addDays(new Date(), 5),
+      title: 'A 3 day event',
+      color: {
+        primary: '#ad2121',
+        secondary: '#FAE3E3'
+      },
+      // actions: this.actions
+    }as CalendarEventModel,
+    {
+      start: startOfDay(new Date()),
+      title: 'An event with no end date',
+      color: {
+        primary: '#ad2121',
+        secondary: '#FAE3E3'
+      },
+      // actions: this.actions
+    }as CalendarEventModel,
+    {
+      start: subDays(endOfMonth(new Date()), 3),
+      end: addDays(endOfMonth(new Date()), 3),
+      title: 'A long event that spans 2 months',
+      color: {
+        primary: '#ad2121',
+        secondary: '#FAE3E3'
+      }
+    }as CalendarEventModel,
+    {
+      start: addHours(startOfDay(new Date()), 2),
+      end: new Date(),
+      title: 'A draggable and resizable event',
+      color: {
+        primary: '#ad2121',
+        secondary: '#FAE3E3'
+      },
+      // actions: this.actions,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
+    } as CalendarEventModel
+    ] as [CalendarEventModel],
+    Title: 'Student Calendar',
+    DefaultEventBackgroundColor: '#d82fbc',
+    View: CalendarViews.Month,
+    ActiveWeekViewButton: true
   };
 
   constructor(private studentService: StudentService, private sortHeaderService: MatSortHeaderIntl, public dialog: MatDialog,

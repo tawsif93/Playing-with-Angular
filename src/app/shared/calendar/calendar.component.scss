@@ -8,11 +8,25 @@
         padding: 20px;
     }
 }
+.cal-cell{
 
-.cal-cell-top {
-    min-height: 50px !important;
+    .cal-cell-top {
+        min-height: 50px !important;
+    }
+
+    .cal-events {
+        margin: 0;
+
+        .cal-event {
+            width: 100% !important;
+            height: 20px !important;
+            display: block;
+            border-radius: 0%;
+            margin: 0;
+        }
+    }
 }
 
-.cal-event{
-    
+.cal-event-background{
+    background-color: aquamarine !important;
 }
