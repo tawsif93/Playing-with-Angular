@@ -4,6 +4,7 @@ import { CommonModule, } from '@angular/common';
 import { CalendarUtilsModule, } from './calendar-utils/calendar-utils.module';
 import { CalendarComponent, } from './calendar.component';
 import { CalendarModule, } from 'angular-calendar';
+import { CalendarService } from './calendar.service';
 
 @NgModule({
   imports: [
@@ -14,5 +15,6 @@ import { CalendarModule, } from 'angular-calendar';
   ],
   declarations: [CalendarComponent, ],
   exports: [CalendarComponent ],
+  providers: [CalendarService],
 })
 export class HRMCalendarModule { }

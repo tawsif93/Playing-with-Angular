@@ -3,6 +3,7 @@ import { CalendarEvent, } from 'angular-calendar';
 import { Subject, Subscription, } from 'rxjs';
 import { MonthViewDay } from 'calendar-utils';
 import { isSameMonth, isSameDay, subDays, addDays, startOfDay, addHours, endOfMonth } from 'date-fns';
+import { CalendarService } from './calendar.service';
 
 
 const colors: any = {
@@ -29,10 +30,6 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
 
   activeDayIsOpen: boolean = true;
-
-  @Input()
-  addEvent: Subject<any> = new Subject<any>();
-
 
 
   refreshSubscription: Subscription;
@@ -62,7 +59,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
   events: CalendarEvent[] = [
     {
       start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
+      end: addDays(new Date(), 5),
       title: 'A 3 day event',
       color: colors.red,
       // actions: this.actions
@@ -93,12 +90,13 @@ export class CalendarComponent implements OnInit, OnDestroy {
     }
   ];
 
-  constructor() { }
+  constructor(public calendarService: CalendarService) { }
 
   ngOnInit() {
-    if (this.addEvent) {
-      this.refreshSubscription = this.addEvent.subscribe(() => {
-        this.addEvent.next();
+    if (this.calendarService.refreshEvent) {
+      this.refreshSubscription = this.calendarService.refreshEvent.subscribe((event: CalendarEvent) => {
+        this.events.push(event);
+        this.logEvent(event);
       });
     }
   }
@@ -120,6 +118,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
   onEventClicked(action: string, event: CalendarEvent): void {
     this.eventClicked.emit({event});
+    this.logEvent(event);
   }
 
   logEvent(lol){

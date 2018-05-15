@@ -1,3 +1,4 @@
+import { CalendarService } from './../../shared/calendar/calendar.service';
 import { FormTextbox } from './../../shared/tuForms/dynamic-form/form-textbox';
 import { FormBase } from './../../shared/tuForms/dynamic-form/form-base';
 import { StudentService } from './../student.service';
@@ -6,6 +7,7 @@ import { Student } from '../student';
 
 import {MatTableDataSource, MatSort, MatSortHeaderIntl, MatPaginator, MatDialog, ErrorStateMatcher, MatButton} from '@angular/material';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { CalendarEventModel } from '../../shared/calendar/models/event.model';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -77,10 +79,12 @@ export class StudentListComponent implements OnInit, AfterViewInit {
     search: false
   };
 
-  constructor(private studentService: StudentService, private sortHeaderService: MatSortHeaderIntl, public dialog: MatDialog ) { }
+  constructor(private studentService: StudentService, private sortHeaderService: MatSortHeaderIntl, public dialog: MatDialog,
+    public calService: CalendarService ) { }
 
   ngOnInit() {
     this.getStudentList();
+    this.calService.addEvent(new CalendarEventModel());
   }
 
   ngAfterViewInit(): void {

@@ -1,7 +1,7 @@
 @import 'angular-calendar/css/angular-calendar.css';
 @import '_breakpoints.scss';
 
- .calendar {
+.calendar {
     padding: 5px;
     
     &.content {
@@ -11,4 +11,8 @@
 
 .cal-cell-top {
     min-height: 50px !important;
+}
+
+.cal-event{
+    
 }
