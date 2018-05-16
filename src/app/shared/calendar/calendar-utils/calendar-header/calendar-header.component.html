@@ -30,82 +30,125 @@
   </div>
 </div>
 <br> -->
-<div id="calendar" class="page-layout simple fullwidth" fusePerfectScrollbar>
-    <!-- HEADER -->
-    <div class="header p-16 p-sm-24" [ngClass]="viewDate | date:'MMM'">
+<mat-toolbar class="mat-elevation-z5">
+	<mat-toolbar-row class="mat-elevation-z1" fxLayout="row" fxLayoutAlign="space-around center">
+		<div class="logo" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
 
-        <div class="header-content" fxLayout="column" fxLayoutAlign="space-between">
+			<mat-icon class="logo-icon">today</mat-icon>
+			<span class="logo-text">{{(configuration.Title) || 'Calendar'}}</span>
+		</div>
+	</mat-toolbar-row>
 
-            <div class="header-top" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column">
+	<mat-toolbar-row class="mat-elevation-z1" fxLayout="row" fxLayoutAlign="center center" >
+        <div fxFlex="20"></div>
+        <div class="control"  fxFlex="60" fxLayout="row" fxLayoutAlign="center center">
 
-                <div class="logo mb-16 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
+            <button mat-button class="mat-icon-button arrow mat-elevation-z1"  fxLayoutAlign="center center" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="viewDateChange.next(viewDate); headerService.calendarPrevious.next()"
+                aria-label="Previous">
+                <mat-icon>chevron_left</mat-icon>
+            </button>
 
-                    <mat-icon class="logo-icon" >today</mat-icon>
+            <div class="title" fxFlex="50" fxLayoutAlign="center center">
+                {{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}
+            </div>
 
-                    <span class="logo-text">{{(configuration.Title) || 'Calendar'}}</span>
+            <button mat-button class="mat-icon-button arrow mat-elevation-z1"  fxLayoutAlign="center center" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="viewDateChange.next(viewDate); headerService.calendarNext.next()"
+                aria-label="Next">
+                <mat-icon>chevron_right</mat-icon>
+            </button>
+        </div>
 
-                </div>
+		<div class="toolbar"  fxFlex="20" fxLayout="row" fxLayoutAlign="end center">
+			<button mat-button class="mat-icon-button" mwlCalendarToday [(viewDate)]="viewDate" (viewDateChange)="viewDateChange.next(viewDate); headerService.calendarToday.next()"
+			    aria-label="Today" matTooltip="Today">
+				<mat-icon>today</mat-icon>
+			</button>
 
-                <!-- TOOLBAR -->
-                <div class="toolbar" fxLayout="row" fxLayoutAlign="start center">
+			<button *ngIf="configuration.ActiveDayViewButton" mat-button class="mat-icon-button" (click)="viewChange.emit('day')" aria-label="Day"
+			    matTooltip="Day">
+				<mat-icon>view_day</mat-icon>
+			</button>
 
-                    <!-- <button mat-button class="mat-icon-button" aria-label="Search" matTooltip="Search">
+			<button *ngIf="configuration.ActiveWeekViewButton" mat-button class="mat-icon-button" (click)="viewChange.emit('week')" aria-label="Week"
+			    matTooltip="Week">
+				<mat-icon>view_week</mat-icon>
+			</button>
+
+			<button *ngIf="configuration.ActiveMonthViewButton" mat-button class="mat-icon-button" (click)="viewChange.emit('month')"
+			    aria-label="Month" matTooltip="Month">
+				<mat-icon>view_module</mat-icon>
+			</button>
+		</div> 
+
+	</mat-toolbar-row>
+</mat-toolbar>
+
+<!-- <div id="calendar" class="page-layout simple fullwidth"> -->
+	<!-- HEADER -->
+	<!-- <div class="header p-16 p-sm-24" [ngClass]="viewDate | date:'MMM'">
+
+		<div class="header-content" fxLayout="column" fxLayoutAlign="space-between">
+
+			<div class="header-top" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column">
+
+				<div class="logo mb-16 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
+
+					<mat-icon class="logo-icon">today</mat-icon>
+
+					<span class="logo-text">{{(configuration.Title) || 'Calendar'}}</span>
+
+				</div> -->
+
+				<!-- TOOLBAR -->
+				<!-- <div class="toolbar" fxLayout="row" fxLayoutAlign="start center"> -->
+
+					<!-- <button mat-button class="mat-icon-button" aria-label="Search" matTooltip="Search">
                         <mat-icon>search</mat-icon>
                     </button> -->
 
-                    <button mat-button class="mat-icon-button"
-                            mwlCalendarToday
-                            [(viewDate)]="viewDate"
-                            (viewDateChange)="viewDateChange.next(viewDate); headerService.calendarToday.next()"
-                            aria-label="Today" matTooltip="Today">
-                        <!--(click)="selectedDay = viewDate"-->
-                        <mat-icon>today</mat-icon>
-                    </button>
+					<!-- <button mat-button class="mat-icon-button" mwlCalendarToday [(viewDate)]="viewDate" (viewDateChange)="viewDateChange.next(viewDate); headerService.calendarToday.next()"
+					    aria-label="Today" matTooltip="Today">
+						(click)="selectedDay = viewDate" -->
+						<!-- <mat-icon>today</mat-icon> -->
+					<!-- </button>
 
-                    <button *ngIf="configuration.ActiveDayViewButton" mat-button class="mat-icon-button" (click)="viewChange.emit('day')" 
-                            aria-label="Day" matTooltip="Day">
-                        <mat-icon>view_day</mat-icon>
-                    </button>
+					<button *ngIf="configuration.ActiveDayViewButton" mat-button class="mat-icon-button" (click)="viewChange.emit('day')" aria-label="Day"
+					    matTooltip="Day">
+						<mat-icon>view_day</mat-icon>
+					</button>
 
-                    <button *ngIf="configuration.ActiveWeekViewButton" mat-button class="mat-icon-button" (click)="viewChange.emit('week')" 
-                            aria-label="Week" matTooltip="Week">
-                        <mat-icon>view_week</mat-icon>
-                    </button>
+					<button *ngIf="configuration.ActiveWeekViewButton" mat-button class="mat-icon-button" (click)="viewChange.emit('week')" aria-label="Week"
+					    matTooltip="Week">
+						<mat-icon>view_week</mat-icon>
+					</button>
 
-                    <button *ngIf="configuration.ActiveMonthViewButton" mat-button class="mat-icon-button" (click)="viewChange.emit('month')" 
-                            aria-label="Month" matTooltip="Month">
-                        <mat-icon>view_module</mat-icon>
-                    </button>
-                </div>
-            </div>
-            <!-- / TOOLBAR -->
+					<button *ngIf="configuration.ActiveMonthViewButton" mat-button class="mat-icon-button" (click)="viewChange.emit('month')"
+					    aria-label="Month" matTooltip="Month">
+						<mat-icon>view_module</mat-icon>
+					</button>
+				</div>
+			</div> -->
+			<!-- / TOOLBAR -->
 
-            <!-- HEADER BOTTOM -->
-            <div class="header-bottom" fxLayout="row" fxLayoutAlign="center center">
+			<!-- HEADER BOTTOM -->
+			<!-- <div class="header-bottom" fxLayout="row" fxLayoutAlign="center center">
 
-                <button mat-button class="mat-icon-button arrow"
-                        mwlCalendarPreviousView
-                        [view]="view"
-                        [(viewDate)]="viewDate"
-                        (viewDateChange)="viewDateChange.next(viewDate); headerService.calendarPrevious.next()"
-                        aria-label="Previous">
-                    <mat-icon>chevron_left</mat-icon>
-                </button>
+				<button mat-button class="mat-icon-button arrow" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="viewDateChange.next(viewDate); headerService.calendarPrevious.next()"
+				    aria-label="Previous">
+					<mat-icon>chevron_left</mat-icon>
+				</button>
 
-                <div class="title">
-                    {{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}
-                </div>
+				<div class="title">
+					{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}
+				</div>
 
-                <button mat-button class="mat-icon-button arrow"
-                        mwlCalendarNextView
-                        [view]="view"
-                        [(viewDate)]="viewDate"
-                        (viewDateChange)="viewDateChange.next(viewDate); headerService.calendarNext.next()"
-                        aria-label="Next">
-                    <mat-icon>chevron_right</mat-icon>
-                </button>
-            </div>
-            <!-- / HEADER BOTTOM -->
-        </div>
+				<button mat-button class="mat-icon-button arrow" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="viewDateChange.next(viewDate); headerService.calendarNext.next()"
+				    aria-label="Next">
+					<mat-icon>chevron_right</mat-icon>
+				</button>
+			</div> -->
+			<!-- / HEADER BOTTOM -->
+		<!-- </div>
 
-</div>
+	</div> -->
+

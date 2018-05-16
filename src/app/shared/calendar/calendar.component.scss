@@ -1,4 +1,5 @@
 @import 'angular-calendar/css/angular-calendar.css';
+@import '~@angular/material/theming';
 @import '_breakpoints.scss';
 
 .calendar {
@@ -21,8 +22,9 @@
             width: 100% !important;
             height: 20px !important;
             display: block;
-            border-radius: 0%;
+            border-radius: 5px;
             margin: 0;
+            @include mat-elevation(10);
         }
     }
 }
@@ -30,3 +32,10 @@
 .cal-event-background{
     background-color: aquamarine !important;
 }
+
+.fill-height {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
