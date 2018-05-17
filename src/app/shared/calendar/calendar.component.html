@@ -41,6 +41,8 @@
 			[events]="events" 
 			[refresh]="calendarService.refreshEvent" 
 			[cellTemplate]="customCellTemplate" 
+			[weekStartsOn]="0"
+			[weekendDays]="[5,6]"
 			(dayClicked)="onDayClicked($event.day)" 
 			(eventClicked)="onEventClicked('Clicked', $event.event)"
 			(beforeViewRender)="beforeMonthViewRender($event)">
