@@ -1,3 +1,4 @@
+import { HostConfig } from './../interfaces/config';
 import { HRMCalendarModule } from './../shared/calendar/calendar.module';
 import { CalendarModule } from 'angular-calendar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -32,6 +33,11 @@ const materials = [MatCardModule, MatTableModule , MatToolbarModule, MatIconModu
   declarations: [StudentListComponent, StudentDetailComponent, StudentListDialogComponent],
   entryComponents: [StudentListDialogComponent],
   exports : [],
-  providers: [StudentService, MatSortHeaderIntl]
+  providers: [
+    // {
+    //   provide: 'IConfig',
+    //   useClass: HostConfig
+    // },
+    StudentService, MatSortHeaderIntl]
 })
 export class StudentModule { }

@@ -1,3 +1,4 @@
+import { SharedConfig } from './../../interfaces/config';
 import { MaterialModule } from './../material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormService } from './dynamic-form/dynamic-form.service';
@@ -16,6 +17,10 @@ const modules: any[] = [ DynamicFormComponent];
   ],
   declarations: [modules, DynamicFormBuilderComponent],
   exports: [modules],
-  providers: [DynamicFormService]
+  providers: [DynamicFormService,
+  {
+    provide: 'IConfig',
+    useClass: SharedConfig
+  }]
 })
 export class TuFormsModule { }

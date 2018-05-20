@@ -1,0 +1,43 @@
+<div class="center">
+  <h2>Basic</h2>
+  <div toggle #firstToggle="toggle" [_id]="1" (toggle)="onToggle('first', $event)">
+    <p>
+      First:
+      <toggle-on>On</toggle-on>
+      <toggle-off>Off</toggle-off>
+      <toggle-button></toggle-button>
+    </p>
+    <toggle #secondToggle="toggle" [_id]="2" (toggle)="onToggle('second', $event)">
+      <p>
+        Second:
+        <toggle-on>On</toggle-on>
+        <toggle-off>Off</toggle-off>
+        <toggle-button></toggle-button>
+      </p>
+    </toggle>
+  </div>
+
+  <h2>Explicit References</h2>
+  <p [withToggle]="firstToggle">
+    First:
+    <toggle-on>On</toggle-on>
+    <toggle-off>Off</toggle-off>
+    <toggle-button></toggle-button>
+  </p>
+  <p [withToggle]="secondToggle">
+    Second:
+    <toggle-on>On</toggle-on>
+    <toggle-off>Off</toggle-off>
+    <toggle-button></toggle-button>
+  </p>
+
+  <h2>Custom Components</h2>
+  <div [withToggle]="firstToggle">
+    <labelled-state toggleName="First"></labelled-state>
+    <labelled-button toggleName="First"></labelled-button>
+  </div>
+  <labelled-state toggleName="Second" [withToggle]="secondToggle"> </labelled-state>
+  <labelled-button toggleName="Second" [withToggle]="secondToggle"> </labelled-button>
+
+</div>
+

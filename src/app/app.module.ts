@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { StudentModule } from './student/student.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
+import { CustomToggleModule } from './custom-toggle/custom-toggle.module';
 
 const materials = [];
 
@@ -24,6 +25,7 @@ const materials = [];
     materials,
     StudentModule,
     AppRoutingModule,
+    CustomToggleModule,
     SharedModule.forRoot()
   ],
   exports: [],

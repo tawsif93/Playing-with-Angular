@@ -1,5 +1,5 @@
 import { FormGroup } from '@angular/forms';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormBase } from './form-base';
 import { DynamicFormService } from './dynamic-form.service';
 
@@ -15,7 +15,9 @@ export class DynamicFormComponent implements OnInit {
 
   payLoad = '' ;
 
-  constructor(private builderService: DynamicFormService) { }
+  constructor(private builderService: DynamicFormService, @Inject('IConfig') config) {
+    console.log(config.value);
+  }
 
   ngOnInit() {
     this.form = this.builderService.toFormGroup(this.fields);
