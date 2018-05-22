@@ -34,10 +34,10 @@ const materials = [MatCardModule, MatTableModule , MatToolbarModule, MatIconModu
   entryComponents: [StudentListDialogComponent],
   exports : [],
   providers: [
-    // {
-    //   provide: 'IConfig',
-    //   useClass: HostConfig
-    // },
+    {
+      provide: 'IConfig',
+      useClass: HostConfig
+    },
     StudentService, MatSortHeaderIntl]
 })
 export class StudentModule { }
