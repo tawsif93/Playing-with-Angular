@@ -1,0 +1,26 @@
+<!-- <button #openButton mat-icon-button class="open-button mat-primary-bg mat-elevation-z2" (click)="openBar()">
+    <mat-icon>settings</mat-icon>
+</button> -->
+
+<div class="theme-options-panel-overlay" #overlay [fxHide]="barClosed" [@fadeInOut]="!barClosed"></div>
+
+<div #panel class="theme-options-panel mat-white-bg mat-elevation-z8">
+
+    {{filterConfiguration.title}}
+	<button mat-icon-button class="close-button" (click)="closeBar()">
+		<mat-icon>close</mat-icon>
+	</button>
+
+
+    <div *ngFor="let field of filterConfiguration.fields">
+        <div [ngSwitch]="field.controlType">
+            
+            <div *ngSwitchCase="filterTypes.Search" (click)="field.callback()" >
+                text box
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
