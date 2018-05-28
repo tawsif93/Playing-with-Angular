@@ -1,4 +1,4 @@
-<div class="center">
+<div class="center" appComponentLoader="1">
   <h2>Basic</h2>
   <div toggle #firstToggle="toggle" [_id]="1" (toggle)="onToggle('first', $event)">
     <p>
@@ -41,3 +41,17 @@
 
 </div>
 
+
+
+<div appComponentLoader="2">
+
+
+  asdbnasjkdbjkasbhd
+  asdajskas
+  aksdjksaj
+</div>
+
+<button mat-raised-button color="warn" (click)="componentService.start(1)" >Start</button>
+<button mat-raised-button color="warn" (click)="componentService.end(1)" >End</button>
+<button mat-raised-button color="warn" (click)="componentService.start(2)" >Start</button>
+<button mat-raised-button color="warn" (click)="componentService.end(2)" >End</button>

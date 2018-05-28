@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ComponentLoaderService } from '../component-loader/services/component-loader.service';
 
 @Component({
   selector: 'app-custom-toggle',
@@ -8,7 +9,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class CustomToggleComponent implements OnInit {
 
-  constructor() { }
+  constructor(public componentService: ComponentLoaderService) { }
 
   ngOnInit() {
   }
