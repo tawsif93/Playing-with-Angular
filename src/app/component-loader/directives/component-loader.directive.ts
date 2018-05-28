@@ -2,20 +2,26 @@ import { ComponentLoaderService } from './../services/component-loader.service';
 import { Directive, Input, EventEmitter, Output, ElementRef, OnInit, ViewContainerRef, ComponentFactoryResolver,
    ComponentRef,
    ViewChild,
-   Renderer2, } from '@angular/core';
+   Renderer2,
+   EmbeddedViewRef,
+   Injector,
+   AfterViewInit, } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LoaderComponent } from '../loader/loader.component';
 
 @Directive({
   selector: '[appComponentLoader]'
 })
-export class ComponentLoaderDirective implements OnInit {
+export class ComponentLoaderDirective implements OnInit  {
 
-  // @ViewChild('appComponentLoader', {read: ViewContainerRef}) viewContainer: ViewContainerRef;
+
+  @ViewChild(ComponentLoaderDirective, {read: ViewContainerRef}) viewContainer: ViewContainerRef;
   // tslint:disable-next-line:no-input-rename
   @Input('appComponentLoader') _id: string;
   @Input() on: boolean;
   @Output() toggle: EventEmitter<boolean> = new EventEmitter();
+
+  ref: any;
 
   public componentRef: ComponentRef<LoaderComponent>;
 
@@ -25,6 +31,7 @@ export class ComponentLoaderDirective implements OnInit {
         private vcRef: ViewContainerRef,
         private renderer: Renderer2,
         private componentFactoryResolver: ComponentFactoryResolver,
+        public injector: Injector,
         public loaderService: ComponentLoaderService ) {
 
     // this.elementRef.nativeElement.innerHTML = 'lkasdjd';
@@ -50,11 +57,18 @@ export class ComponentLoaderDirective implements OnInit {
 
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(LoaderComponent);
     this.componentRef = this.vcRef.createComponent(componentFactory);
+    // const viewRef  = this.vcRef.createComponent(componentFactory).hostView as EmbeddedViewRef<any>;
+
     // this.componentRef.instance.loaderDirective = this;
-    this.renderer.appendChild(
-      this.vcRef.element.nativeElement,
-      this.componentRef.injector.get(LoaderComponent)
-   );
+    // const target = this.vcRef.element.nativeElement;
+    // this.ref = viewRef.rootNodes[0];
+    // target.appendChild(this.ref);
+  //   this.renderer.appendChild(
+  //     this.vcRef.element.nativeElement,
+  //     this.componentRef.injector.get(LoaderComponent)
+  //  );
+
   }
+
 
 }

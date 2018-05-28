@@ -1,15 +1,15 @@
-import { loenceAnimation, } from './../../animations/animation';
+// import { loenceAnimation, } from './../../animations/animation';
 import { Component, ElementRef, HostBinding, OnDestroy, OnInit, Renderer2, ViewChild, Input,  ViewEncapsulation, } from '@angular/core';
 import { style, animate, AnimationBuilder, AnimationPlayer, } from '@angular/animations';
 import { Subscription, } from 'rxjs/Subscription';
 import { FilterPanelService, } from './filter-panel.service';
-import { IFilterConfiguration, FilterControlTypes, } from './model/filter.model';
+import { FilterConfig, FilterType, } from './model/filter.model';
 
 @Component({
 	selector   : 'app-filter-panel',
 	templateUrl: './filter-panel.component.html',
 	styleUrls  : ['./filter-panel.component.scss', ],
-	animations : loenceAnimation,
+	// animations : loenceAnimation,
 })
 export class FilterPanelComponent implements OnInit, OnDestroy {
 	@ViewChild('openButton') openButton;
@@ -18,14 +18,14 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
 
 	public player: AnimationPlayer;
 
-	filterTypes = FilterControlTypes;
+	filterTypes = FilterType;
 
 	onSettingsChanged: Subscription;
 	panelActionSubscription: Subscription;
 
 	@HostBinding('class.bar-closed') barClosed: boolean;
 
-	@Input() filterConfiguration: IFilterConfiguration;
+	@Input() filterConfiguration: FilterConfig<any>;
 
 	constructor(
 		private animationBuilder: AnimationBuilder,
@@ -38,34 +38,6 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
 			this.openBar();
 		});
 
-		// this.onSettingsChanged =
-		// 	this.fuseConfig.onSettingsChanged
-		// 		.subscribe(
-		// 			(newSettings) => {
-		// 				this.fuseSettings = newSettings;
-		// 			}
-		// 		);
-
-		// Get the nav model and add customize nav item
-		// that opens the bar programmatically
-		// const navModel = this.navigationService.getNavigationModel();
-
-		// navModel.push({
-		// 	'id'      : 'custom-function',
-		// 	'title'   : 'Custom Function',
-		// 	'type'    : 'group',
-		// 	'children': [
-		// 		{
-		// 			'id'      : 'customize',
-		// 			'title'   : 'Customize',
-		// 			'type'    : 'item',
-		// 			'icon'    : 'settings',
-		// 			'function': () => {
-		// 				this.openBar();
-		// 			}
-		// 		}
-		// 	]
-		// });
 	}
 
 	ngOnInit() {

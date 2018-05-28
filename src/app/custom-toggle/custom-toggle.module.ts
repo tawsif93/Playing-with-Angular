@@ -1,3 +1,4 @@
+import { FilterPanelModule } from './../shared/filter-panel/filter-panel.module';
 import { ComponentLoaderModule } from './../component-loader/component-loader.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,7 +12,7 @@ import { LoaderService } from './loader.service';
 import { MatButtonModule } from '@angular/material';
 
 @NgModule({
-  imports: [ BrowserModule, FormsModule, ToggleModule, ComponentLoaderModule, MatButtonModule ],
+  imports: [ BrowserModule, FormsModule, ToggleModule, ComponentLoaderModule, MatButtonModule, FilterPanelModule ],
   declarations: [CustomToggleComponent, LabelledButtonComponent, LabelledStateComponent],
   providers: [LoaderService],
 })

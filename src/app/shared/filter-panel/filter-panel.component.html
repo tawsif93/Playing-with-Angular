@@ -2,23 +2,37 @@
     <mat-icon>settings</mat-icon>
 </button> -->
 
-<div class="theme-options-panel-overlay" #overlay [fxHide]="barClosed" [@fadeInOut]="!barClosed"></div>
+<div class="theme-options-panel-overlay" #overlay [fxHide]="barClosed" ></div>
 
-<div #panel class="theme-options-panel mat-white-bg mat-elevation-z8">
+<div #panel class="theme-options-panel mat-white-bg mat-elevation-z8" style="background: white">
 
-    {{filterConfiguration.title}}
+    {{filterConfiguration.Title}}
 	<button mat-icon-button class="close-button" (click)="closeBar()">
 		<mat-icon>close</mat-icon>
 	</button>
 
 
-    <div *ngFor="let field of filterConfiguration.fields">
-        <div [ngSwitch]="field.controlType">
+    <div *ngFor="let field of filterConfiguration.Filters">
+        <div [ngSwitch]="field.FilterType">
             
-            <div *ngSwitchCase="filterTypes.Search" (click)="field.callback()" >
-                text box
+            <div *ngSwitchCase="filterTypes.SEARCH_BOX"  >
+                <mat-form-field [floatLabel]="'auto'">
+                    <mat-label *ngIf="field.Label">{{field.Label}}</mat-label>
+                    <input matInput placeholder="{{field.PlaceHolder}}" [(ngModel)]="field.Model" [debounce]="300" 
+                    (ngModelChange)="field.callback(field.Model)" > 
+                </mat-form-field>
             </div>
 
+            <div *ngSwitchCase="filterTypes.DROP_DOWN" >
+                <mat-form-field>
+                    <mat-label *ngIf="field.Label">{{field.Label}}</mat-label>                    
+                    <mat-select placeholder="{{field.PlaceHolder}}" [(ngModel)]="field.Model" (selectionChange)="field.callback(field.Model)" name="option">
+                        <mat-option *ngFor="let option of field.Options" [value]="option">
+                        {{option[field.ViewKey]}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
         </div>
     </div>
 
