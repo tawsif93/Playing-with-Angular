@@ -1,0 +1,41 @@
+<mat-dialog-content>
+<div class="event-heading" >
+	<div fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="5px">
+		<mat-icon>delete</mat-icon>
+		<mat-icon>close</mat-icon>
+	</div>
+	<div class="event-heading-title" fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="5px">
+			Hello Loomen Ipsum
+	</div>
+
+	
+	<div fxLayout="row" fxLayoutAlign="start end" fxLayoutGap="5px">
+		<button mat-mini-fab color="#039BE5">
+			<mat-icon color="white" >edit</mat-icon>
+		</button>
+	</div>
+</div>
+<div>
+	<form [formGroup]="eventForm">
+		<mat-form-field class="width-100-p">
+			<mat-select formControlName="EventTitle" placeholder="Event Title">
+				<mat-option *ngFor="let eventTitle of eventTitles" [value]="eventTitle.viewValue">
+					{{ eventTitle.viewValue }}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+
+		<mat-form-field class="width-100-p">
+			<input matInput readonly="true" formControlName="EventDate" [matDatepicker]="picker" (click)="picker.open()" placeholder="Event date">
+			<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+			<mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    
+    <mat-form-field class="width-100-p">
+      <textarea matInput formControlName="EventComment" placeholder="Comments"></textarea>
+    </mat-form-field>
+	</form>
+</div>
+
+
+</mat-dialog-content>

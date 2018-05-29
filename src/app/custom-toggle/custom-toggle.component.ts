@@ -1,7 +1,9 @@
+import { HolidayEventComponent } from './holiday-event/holiday-event.component';
 import { FilterPanelService } from './../shared/filter-panel/filter-panel.service';
 import { FilterConfig, DropdownConfig, SearchBoxConfig, FilterType } from './../shared/filter-panel/model/filter.model';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ComponentLoaderService } from '../component-loader/services/component-loader.service';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-custom-toggle',
@@ -38,7 +40,20 @@ export class CustomToggleComponent implements OnInit {
   ],
   };
 
-  constructor(public componentService: ComponentLoaderService, public filterService: FilterPanelService) { }
+  constructor(public componentService: ComponentLoaderService, public filterService: FilterPanelService, public dialog: MatDialog) { }
+
+  openDialog(): void {
+    let dialogRef = this.dialog.open(HolidayEventComponent, {
+      width: '400px',
+      data: { view: 'edit'  }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+
+    });
+  }
+
 
   ngOnInit() {
   }

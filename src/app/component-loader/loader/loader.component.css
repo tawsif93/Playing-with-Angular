@@ -1,3 +1,7 @@
 .component-spinner-off {
     display: none;
 }
+
+.component-spinner {
+    position: absolute;
+}

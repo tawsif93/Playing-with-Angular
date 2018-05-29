@@ -81,64 +81,26 @@ export class StudentListComponent implements OnInit, AfterViewInit {
     search: false
   };
 
-  configuration: ICalendarConfiguration = {
-    Events: [
-        {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 5),
-      title: 'A 3 day event',
-      color: {
-        primary: '#ad2121',
-        secondary: '#FAE3E3'
-      },
-      // actions: this.actions
-    }as CalendarEventModel,
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: {
-        primary: '#ad2121',
-        secondary: '#FAE3E3'
-      },
-      // actions: this.actions
-    }as CalendarEventModel,
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: {
-        primary: '#ad2121',
-        secondary: '#FAE3E3'
-      }
-    }as CalendarEventModel,
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: new Date(),
-      title: 'A draggable and resizable event',
-      color: {
-        primary: '#ad2121',
-        secondary: '#FAE3E3'
-      },
-      // actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    } as CalendarEventModel
-    ] as [CalendarEventModel],
-    Title: 'Student Calendar',
-    // DefaultEventBackgroundColor: '#d82fbc',
-    View: CalendarViews.Month,
-    // ActiveWeekViewButton: true
-  };
+
+	configuration: ICalendarConfiguration = {
+		Events: [],
+		Title: 'Holiday Calendar',
+		// DefaultEventBackgroundColor: '#d82fbc',
+		View: CalendarViews.Month,
+		ShowTitleBar: false,
+		ActiveYearMonthPicker: false,
+		EventTitleViewKey: 'Title',
+
+		// ActiveWeekViewButton: true
+  } as ICalendarConfiguration;
+  
 
   constructor(private studentService: StudentService, private sortHeaderService: MatSortHeaderIntl, public dialog: MatDialog,
     public calService: CalendarService ) { }
 
   ngOnInit() {
     this.getStudentList();
-    this.calService.addEvent(new CalendarEventModel());
+    // this.calService.addEvent(new CalendarEventModel());
   }
 
   ngAfterViewInit(): void {

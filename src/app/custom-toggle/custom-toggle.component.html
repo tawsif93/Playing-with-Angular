@@ -41,15 +41,15 @@
 
 </div>
 
-<div>
-lol
-<div appComponentLoader="2">
+<div style="width:20%; background:grey;">
+  lol
+  <div appComponentLoader="2">
 
 
-  asdbnasjkdbjkasbhd
-  asdajskas
-  aksdjksaj
-</div>
+    asdbnasjkdbjkasbhd
+    asdajskas
+    aksdjksaj
+  </div>
 </div>
 <button mat-raised-button color="warn" (click)="componentService.start(1)" >Start</button>
 <button mat-raised-button color="warn" (click)="componentService.end(1)" >End</button>
@@ -58,3 +58,9 @@ lol
 
 
 <app-filter-panel [filterConfiguration]="conf" ></app-filter-panel>
+
+<div class="responsive">
+  <div class="cell"> Hello Holiday </div>
+</div>
+
+<button mat-raised-button color="primary" (click)="openDialog()" >open</button>

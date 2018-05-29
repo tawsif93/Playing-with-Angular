@@ -1,3 +1,4 @@
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoaderComponent } from './loader/loader.component';
@@ -9,6 +10,7 @@ import { ComponentLoaderService } from './services/component-loader.service';
   imports: [
     CommonModule,
     MatProgressSpinnerModule,
+    FlexLayoutModule,
   ],
   declarations: [LoaderComponent, ComponentLoaderDirective],
   providers: [ComponentLoaderService],

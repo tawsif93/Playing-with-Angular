@@ -1,6 +1,8 @@
 export interface ICalendarHeaderConfiguration {
-    ActiveDayViewButton?: boolean;
-    ActiveMonthViewButton?: boolean;
-    ActiveWeekViewButton?: boolean;
-    Title?: string;
+	ActiveDayViewButton?: boolean;
+	ActiveMonthViewButton?: boolean;
+	ActiveWeekViewButton?: boolean;
+	ActiveYearMonthPicker?: boolean;
+	Title?: string;
+	ShowTitleBar?: boolean;
 }

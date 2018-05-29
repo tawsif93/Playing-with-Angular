@@ -1,32 +1,33 @@
-import { ICalendarHeaderConfiguration } from './../../models/calendar-header.model';
-import { CalendarHeaderService } from './../calendar-header.service';
+import { ICalendarHeaderConfiguration, } from './../../models/calendar-header.model';
+import { CalendarHeaderService, } from './../calendar-header.service';
 import { Component, OnInit, Input, EventEmitter, Output, ViewEncapsulation, } from '@angular/core';
 
 @Component({
-  selector: 'app-calendar-header',
-  templateUrl: './calendar-header.component.html',
-  styleUrls: ['./calendar-header.component.scss', ],
-  encapsulation: ViewEncapsulation.None,
+	selector: 'app-calendar-header',
+	templateUrl: './calendar-header.component.html',
+	styleUrls: ['./calendar-header.component.scss', ],
+	encapsulation: ViewEncapsulation.None,
+	providers: [],
 })
 export class CalendarHeaderComponent implements OnInit {
 
-  @Input() view: string;
+	@Input() view: string;
 
-  @Input() viewDate: Date;
+	@Input() viewDate: Date;
 
-  @Input() locale = 'en';
+	@Input() locale = 'en';
 
-  @Input() configuration: ICalendarHeaderConfiguration;
+	@Input() configuration: ICalendarHeaderConfiguration;
 
-  @Output() viewChange: EventEmitter<string> = new EventEmitter();
+	@Output() viewChange: EventEmitter<string> = new EventEmitter();
 
-  @Output() viewDateChange: EventEmitter<Date> = new EventEmitter();
+	@Output() viewDateChange: EventEmitter<Date> = new EventEmitter();
 
-  constructor(public headerService: CalendarHeaderService) {
-    this.configuration = this.configuration || { } as ICalendarHeaderConfiguration;
-  }
+	constructor(public headerService: CalendarHeaderService) {
+		this.configuration = this.configuration || { } as ICalendarHeaderConfiguration;
+	}
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
 }

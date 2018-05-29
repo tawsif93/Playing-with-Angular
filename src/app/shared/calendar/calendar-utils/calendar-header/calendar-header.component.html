@@ -31,7 +31,7 @@
 </div>
 <br> -->
 <mat-toolbar class="mat-elevation-z5">
-	<mat-toolbar-row class="mat-elevation-z1" fxLayout="row" fxLayoutAlign="space-around center">
+	<mat-toolbar-row *ngIf="configuration.ShowTitleBar" class="mat-elevation-z1" fxLayout="row" fxLayoutAlign="space-around center">
 		<div class="logo" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
 
 			<mat-icon class="logo-icon">today</mat-icon>
@@ -59,6 +59,10 @@
         </div>
 
 		<div class="toolbar"  fxFlex="20" fxLayout="row" fxLayoutAlign="end center">
+
+			<div *ngIf="configuration.ActiveYearMonthPicker" >
+				<app-month-picker></app-month-picker>
+			</div>
 			<button mat-button class="mat-icon-button" mwlCalendarToday [(viewDate)]="viewDate" (viewDateChange)="viewDateChange.next(viewDate); headerService.calendarToday.next()"
 			    aria-label="Today" matTooltip="Today">
 				<mat-icon>today</mat-icon>

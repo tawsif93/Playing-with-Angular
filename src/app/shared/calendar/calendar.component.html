@@ -2,7 +2,7 @@
   [(view)]="view" 
   [(viewDate)]="viewDate"
   [configuration]="calendarConfiguration"
-  (viewDateChange)="activeDayIsOpen = false"
+  (viewDateChange)="activeDayIsOpen = false; viewDate=viewDate"
   (viewChange)="onViewChange($event)">
 </app-calendar-header>
 
@@ -14,13 +14,13 @@
 	let-highlightDay="highlightDay"
 	let-unhighlightDay="unhighlightDay"
 	let-eventClicked="eventClicked">
-	<div class=" cal-cell" [style.backgroundColor]="day.badgeTotal > 0? calendarConfiguration.DefaultEventBackgroundColor: '#ffff' ">
+	<div class=" cal-cell" [style.backgroundColor]="day.badgeTotal > 0? calendarConfiguration.DefaultEventBackgroundColor: '' ">
 	  <div class="cal-cell-top">
-		  <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
+		  <!-- <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span> -->
 		  <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
 	  </div>
 	  <div class="cal-events" >
-		  <div class="cal-event" *ngFor="let event of day.events; let i=index"
+		  <div class="cal-event truncate" *ngFor="let event of day.events; let i=index"
 			  fxLayoutAlign="center center"
 			  [style.backgroundColor]="event.color.primary"
 			  [ngClass]="event?.cssClass"
@@ -39,10 +39,10 @@
 		<mwl-calendar-month-view *ngSwitchCase="'month'" 
 			[viewDate]="viewDate" 
 			[events]="events" 
-			[refresh]="calendarService.refreshEvent" 
+			[refresh]="calendarRefreshSubject" 
 			[cellTemplate]="customCellTemplate" 
 			[weekStartsOn]="0"
-			[weekendDays]="[5,6]"
+			[weekendDays]="calendarConfiguration.Weekend"
 			(dayClicked)="onDayClicked($event.day)" 
 			(eventClicked)="onEventClicked('Clicked', $event.event)"
 			(beforeViewRender)="beforeMonthViewRender($event)">

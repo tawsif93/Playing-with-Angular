@@ -42,9 +42,10 @@ export class CalendarEventModel {
 	};
 	draggable?: boolean;
 	meta?: {
-		_id: string,
+		_id?: string,
 		location: string,
-		notes: string
+		notes: string,
+		title: string,
 	};
 
 	constructor(data?) {
@@ -68,6 +69,7 @@ export class CalendarEventModel {
 			_id: data.meta && data.meta._id || '',
 			location: data.meta && data.meta.location || '',
 			notes   : data.meta && data.meta.notes || '',
+			title   : data.meta && data.meta.title || '',
 		};
 	}
 
@@ -78,4 +80,6 @@ export enum EventAction {
 	Refresh = 'refresh',
 	Update = 'update',
 	Add = 'add',
+	Delete = 'delete',
+	Get = 'get',
 }
