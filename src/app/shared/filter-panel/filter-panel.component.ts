@@ -30,7 +30,7 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
 	constructor(
 		private animationBuilder: AnimationBuilder,
 		private renderer: Renderer2,
-		private panelService: FilterPanelService
+		private panelService: FilterPanelService,
 	) {
 		this.barClosed = true;
 
@@ -41,6 +41,8 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnInit() {
+
+		this.filterConfiguration.Filters.sort((a, b) => a.Order || 0 - b.Order || 0);
 		this.renderer.listen(this.overlay.nativeElement, 'click', () => {
 			this.closeBar();
 		});
@@ -54,8 +56,8 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
 		this.player =
 			this.animationBuilder
 				.build([
-					style({transform: 'translate3d(0,0,0)', }),
-					animate('400ms ease', style({transform: 'translate3d(100%,0,0)', })),
+					style({transform: 'translate3d(0,0,0)', opacity: 1 }),
+					animate('400ms ease', style({transform: 'translate3d(100%,0,0)', opacity: 0 })),
 				]).create(this.panel.nativeElement);
 
 		this.player.play();
@@ -71,15 +73,20 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
 		this.player =
 			this.animationBuilder
 				.build([
-					style({transform: 'translate3d(100%,0,0)', }),
-					animate('400ms ease', style({transform: 'translate3d(0,0,0)', } )),
+					style({transform: 'translate3d(100%,0,0)', opacity: 0 }),
+					animate('400ms ease', style({transform: 'translate3d(0,0,0)', opacity: 1 } )),
 				]).create(this.panel.nativeElement);
 
 		this.player.play();
 	}
 
 	ngOnDestroy() {
-		this.onSettingsChanged.unsubscribe();
-		this.panelActionSubscription.unsubscribe();
+		if (this.onSettingsChanged) {
+			this.onSettingsChanged.unsubscribe();
+		}
+
+		if (this.panelActionSubscription) {
+			this.panelActionSubscription.unsubscribe();
+		}
 	}
 }

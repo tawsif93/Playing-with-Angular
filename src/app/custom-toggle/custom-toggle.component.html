@@ -17,6 +17,12 @@
     </toggle>
   </div>
 
+  <button mat-raised-button color="primary" (click)="openDialog($event)" >open</button>
+
+  <span style="width: 25%;">
+    <app-filter-panel [filterConfiguration]="conf" ></app-filter-panel>
+  </span>
+
   <h2>Explicit References</h2>
   <p [withToggle]="firstToggle">
     First:
@@ -57,10 +63,8 @@
 <button mat-raised-button color="warn" (click)="componentService.end(2)" >End</button>
 
 
-<app-filter-panel [filterConfiguration]="conf" ></app-filter-panel>
 
 <div class="responsive">
   <div class="cell"> Hello Holiday </div>
 </div>
 
-<button mat-raised-button color="primary" (click)="openDialog()" >open</button>

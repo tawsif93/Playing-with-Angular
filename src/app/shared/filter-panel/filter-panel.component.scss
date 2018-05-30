@@ -11,10 +11,10 @@
 }
 
 :host {
-    position: fixed;
-    display: block;
-    right: 0;
-    top: 160px;
+    // position: fixed;
+    // display: block;
+    // right: 0;
+    // top: 160px;
     z-index: 998;
 
     &.bar-closed .theme-options-panel {
@@ -24,7 +24,7 @@
     .theme-options-panel {
         position: absolute;
         right: 0;
-        top: 0;
+        top: 50px;
         width: 360px;
         transform: translate3d(100%, 0, 0);
         z-index: 999;
@@ -42,6 +42,13 @@
             position: absolute;
             top: 8px;
             right: 8px;
+        }
+
+
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.54);
         }
 
         h3 {
@@ -86,7 +93,7 @@
     }
 
     .mat-divider {
-        margin: 16px;
+        margin: 10px;
     }
 
 }
